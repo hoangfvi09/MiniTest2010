@@ -47,7 +47,7 @@ public class StudentManager implements Manageable<Student> {
 
     }
 
-    @Override
+
     public void sortByAverageMark() {
         studentList.sort(Comparator.comparingDouble(Student::getAverageMark));
 
@@ -63,7 +63,7 @@ public class StudentManager implements Manageable<Student> {
         return -1;
     }
 
-    @Override
+
     public double calculateTotal() {
         double total = 0;
         for (Student student : studentList) {

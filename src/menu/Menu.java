@@ -4,6 +4,7 @@ import model.Student;
 
 import service.StudentManager;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Menu {
@@ -23,39 +24,29 @@ public class Menu {
         System.out.println("________________________________________________________________");
     }
 
-    public static void manageMenuSelection(){
-        int selection;
+    public static void manageMenuSelection() {
+        int selection=-1;
         do {
-            Scanner scanner=new Scanner(System.in);
-            selection=scanner.nextInt();
-            switch (selection) {
-                case 1:
-                    input();
-                    break;
-                case 2:
-                    showAll();
-                    break;
-                case 3:
-                    searchPosition();
-                    break;
-                case 4:
-                    removeFromTheList();
-                    break;
-                case 5:
-                    sort();
-                    break;
-                case 6:
-                    total();
-                    break;
-                case 7:
-                    edit();
-                    break;
-                default:
-                    System.out.println(selection+" is not a valid selection.");
+            Scanner scanner = new Scanner(System.in);
+            try {
+                selection = scanner.nextInt();
+            } catch (InputMismatchException e) {
+                selection=-1;
 
+            }finally {
+                switch (selection) {
+                    case 1 -> input();
+                    case 2 -> showAll();
+                    case 3 -> searchPosition();
+                    case 4 -> removeFromTheList();
+                    case 5 -> sort();
+                    case 6 -> total();
+                    case 7 -> edit();
+                    default -> System.out.println("Not a valid selection.");
+                }
+                showMenu();
             }
-            showMenu();
-        }while(selection!=0);
+        } while (selection != 0);
     }
 
     public static void input() {
@@ -66,36 +57,36 @@ public class Menu {
         int age = scanner.nextInt();
         System.out.println("Enter student's average mark:");
         double average = scanner.nextDouble();
-        Student student=new Student(name,age,average);
+        Student student = new Student(name, age, average);
         studentManager.add(student);
         showAll();
     }
 
-    public static void showAll(){
+    public static void showAll() {
         System.out.println("Student list:");
         studentManager.print();
     }
 
-    public static void searchPosition(){
+    public static void searchPosition() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter student's id:");
-        int id=scanner.nextInt();
-        int index=studentManager.findIndexById(id);
-        System.out.println("Student's at index "+index);
+        int id = scanner.nextInt();
+        int index = studentManager.findIndexById(id);
+        System.out.println("Student's at index " + index);
     }
 
-    public static void removeFromTheList(){
+    public static void removeFromTheList() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter student's id:");
-        int id=scanner.nextInt();
+        int id = scanner.nextInt();
         studentManager.removeById(id);
         showAll();
     }
 
-    public static void edit(){
+    public static void edit() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter student's id:");
-        int id=scanner.nextInt();
+        int id = scanner.nextInt();
         scanner.nextLine();
         System.out.println("Enter student's new name: ");
         String name = scanner.nextLine();
@@ -103,19 +94,18 @@ public class Menu {
         int age = scanner.nextInt();
         System.out.println("Enter student's new average mark:");
         double average = scanner.nextDouble();
-        studentManager.editById(id,name,age,average);
+        studentManager.editById(id, name, age, average);
         showAll();
     }
 
-    public static void sort(){
+    public static void sort() {
         studentManager.sortByAverageMark();
         showAll();
     }
 
     public static void total() {
-        System.out.println("Total average mark: "+studentManager.calculateTotal());
+        System.out.println("Total average mark: " + studentManager.calculateTotal());
     }
-
 
 
 }

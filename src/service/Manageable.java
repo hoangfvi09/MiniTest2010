@@ -11,9 +11,7 @@ public interface Manageable<T> {
 
     void removeById(int id);
 
-    void sortByAverageMark();
-
     int findIndexById(int id);
 
-    double calculateTotal();
+
 }

@@ -25,6 +25,6 @@ public class Student extends Person {
                 "id = " + super.getId() +
                 ", name = " + super.getName() +
                 ", age = " + super.getAge() +
-                ", averageMark=" + averageMark;
+                ", averageMark = " + averageMark;
     }
 }
