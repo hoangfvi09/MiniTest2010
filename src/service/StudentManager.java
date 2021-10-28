@@ -71,4 +71,19 @@ public class StudentManager implements Manageable<Student> {
         }
         return total;
     }
+
+    public void addStudentFromFile(String filePath){
+        FileReader.addFromFile(studentList,filePath);
+
+    }
+
+    public void writeStudentList(String filePath){
+        FileWriter.write(studentList,filePath);
+    }
+
+    public static void main(String[] args) {
+        StudentManager studentManager=new StudentManager();
+        studentManager.addStudentFromFile("/Users/hoangfvi/Documents/JAVA/Module 2/MiniTest2010/src/StudentList.csv");
+        studentManager.writeStudentList("StudentListToBeWritten.csv");
+    }
 }

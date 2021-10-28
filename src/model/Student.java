@@ -11,6 +11,11 @@ public class Student extends Person {
         this.averageMark = averageMark;
     }
 
+    public Student(int id, String name, int age, double averageMark) {
+        super(id, name, age);
+        this.averageMark = averageMark;
+    }
+
     public double getAverageMark() {
         return averageMark;
     }
